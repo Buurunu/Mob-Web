@@ -5,9 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: c-next-loja
+    container_name: c-next-loja-Bruno
     ports:
-      - '3030:3000'  # Mapeia a porta 3000 do container para a 3030 no host
+      - '3039:3000'  # Mapeia a porta 3000 do container para a 3030 no host
     volumes:
       - .:/app
       - ./node_modules:/app/node_modules
@@ -22,21 +22,21 @@ services:
 
   db:
     image: mariadb:10.3
-    container_name: c-mysql-loja
+    container_name: c-mysql-loja-Bruno
     environment:
       MYSQL_ROOT_PASSWORD: bsi-vendas
       MYSQL_DATABASE: bsi-vendas  # Cria o banco de dados automaticamente
     ports:
-      - "3031:3306"  # Mapeia a porta 3306 do container para a 3031 no host
+      - "3040:3306"  # Mapeia a porta 3306 do container para a 3031 no host
     volumes:
       - ./data:/var/lib/mysql  # Persiste os dados do banco de dados
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: c-phpmyadmin-loja
+    container_name: c-phpmyadmin-loja-Bruno
     environment:
       PMA_HOST: db  # Nome do serviço do banco de dados
     ports:
-      - "3032:80"  # Mapeia a porta 80 do container para a 3032 no host
+      - "3041:80"  # Mapeia a porta 80 do container para a 3032 no host
     depends_on:
       - db

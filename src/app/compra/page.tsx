@@ -2,54 +2,53 @@
 
 import React, { useState } from "react";
 import styles from './styles.module.css';
-import Input from "../componentes/inputs";   
+import Input from "../componentes/inputs";
 import Navbar from "../componentes/header";
 import { useRouter } from "next/navigation";
 
-export default function Compra(){
-    //const [name, setName] = useState('');
-    const [dataCompra, setDataCompra] = useState('');
+export default function Compra() {
+    const [id_fornecedor, setIdFornecedor] = useState('');
+    const [data_compra, setDataCompra] = useState('');
     const [total, setTotal] = useState('');
-    const [loading, setLoading] = useState(false); // Estado para o spinner
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Validação dos campos
-        if (!dataCompra || !total) {
+        if (!id_fornecedor || !data_compra || !total) {
             alert('Por favor, preencha todos os campos.');
             return;
         }
 
-        setLoading(true); // Ativa o spinner
+        setLoading(true);
 
         try {
-            // Faz a requisição para a API
             const response = await fetch('/api/compra', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ dataCompra, total }),
+                body: JSON.stringify({ id_fornecedor, data_compra, total }),
             });
 
-            // Verifica se a requisição foi bem-sucedida
             if (response.ok) {
+                setIdFornecedor('');
                 setDataCompra('');
                 setTotal('');
                 alert('Compra finalizada com sucesso');
-                router.push('/compra'); //
+                router.push('/compra');
             } else {
                 const errorData = await response.json();
-                console.error('Erro ao inserir ao fazer uma compra:', errorData.error);
+                console.error('Erro ao realizar uma compra:', errorData.error);
                 alert('Erro ao realizar uma compra: ' + errorData.error);
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
             alert('Erro ao fazer uma compra. Verifique o console para mais detalhes.');
         } finally {
-            setLoading(false); // Desativa o spinner
+            setLoading(false);
         }
     };
 
@@ -62,11 +61,22 @@ export default function Compra(){
 
             <form onSubmit={handleSubmit}>
                 <div className={styles.formularios}>
-                    <div className={styles.data}>
-                        <p>Data da compra</p>
+                    <div className={styles.fornecedor}>
+                        <p>ID Fornecedor</p>
                         <Input
                             type="text"
-                            value={dataCompra}
+                            value={id_fornecedor}
+                            onChange={(e) => setIdFornecedor(e.target.value)}
+                            placeholder="Digite o ID do fornecedor"
+                            required
+                        />
+                    </div>
+
+                    <div className={styles.data}>
+                        <p>Data da Compra</p>
+                        <Input
+                            type="date"
+                            value={data_compra}
                             onChange={(e) => setDataCompra(e.target.value)}
                             placeholder="Digite a data da compra"
                             required

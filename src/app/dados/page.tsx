@@ -1,4 +1,3 @@
-// src/app/dados/page.js
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -10,6 +9,7 @@ export default function Dados() {
     const [dados, setDados] = useState([]);
     const [tabela, setTabela] = useState('clientes'); // Estado para controlar qual tabela exibir
     const [loading, setLoading] = useState(false); // Estado para o spinner
+    const [error, setError] = useState(null); // Estado para armazenar erros
     const router = useRouter();
 
     useEffect(() => {
@@ -18,19 +18,22 @@ export default function Dados() {
 
     const fetchDados = async () => {
         setLoading(true);
+        setError(null); // Limpa erros anteriores
         try {
             const response = await fetch(`/api/${tabela}`);
             if (response.ok) {
                 const data = await response.json();
-                // Garante que `dados` seja sempre um array
-                setDados(Array.isArray(data) ? data : []);
+                setDados(data); // Assume que a API retorna um array diretamente
             } else {
-                console.error('Erro ao buscar dados:', response.statusText);
-                setDados([]); // Define `dados` como um array vazio em caso de erro
+                const errorText = await response.text(); // Captura o texto do erro
+                console.error('Erro ao buscar dados:', errorText);
+                setError(`Erro ao buscar dados: ${errorText}`);
+                setDados([]);
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
-            setDados([]); // Define `dados` como um array vazio em caso de erro
+            setError(`Erro na requisição: ${error.message}`);
+            setDados([]);
         } finally {
             setLoading(false);
         }
@@ -63,6 +66,8 @@ export default function Dados() {
 
                 {loading ? (
                     <p className={styles.loading}>Carregando...</p>
+                ) : error ? (
+                    <p className={styles.error}>{error}</p>
                 ) : dados.length === 0 ? (
                     <p className={styles.loading}>Nenhum dado encontrado.</p>
                 ) : (
