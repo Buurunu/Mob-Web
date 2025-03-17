@@ -1,0 +1,137 @@
+/* src/app/produtos/styles.module.css */
+.container {
+    background-color: #1a1a2e;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+.title {
+    height: 100px;
+    width: 100%;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 30px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.formularios {
+    padding: 30px;
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border: 3px solid #0a2342;
+    width: 30%;
+    margin: 50px auto;
+    background-color: #0a192f;
+    border-radius: 10px;
+}
+
+.campo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campo p {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #0a2342;
+    background-color: #0a2342;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.campo input::placeholder {
+    color: #baabab;
+}
+
+.button {
+    background-color: #0a2342;
+    border-radius: 5px;
+    border: 2px solid #0a192f;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #1f4886;
+}
+
+.tabelaContainer {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tabelaContainer h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela th, .tabela td {
+    border: 1px solid #0a2342;
+    padding: 10px;
+    text-align: left;
+}
+
+.tabela th {
+    background-color: #0a2342;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.tabela tr:nth-child(even) {
+    background-color: #0a192f;
+}
+
+.tabela tr:hover {
+    background-color: #1a1a2e;
+}
+
+@media (max-width: 768px) {
+    .formularios {
+        width: 50%;
+    }
+
+    .tabelaContainer {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .formularios {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .tabelaContainer {
+        width: 100%;
+    }
+}

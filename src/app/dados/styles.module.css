@@ -1,0 +1,166 @@
+/* src/app/dados/styles.module.css */
+.container {
+    background-color: #1a1a2e;
+    min-height: 100vh;
+    color: #ffffff;
+
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    height: 100px;
+    width: 100%;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 30px;
+}
+
+.formularios {
+    padding: 30px;
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border: 3px solid #0a2342;
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #0a192f;
+    border-radius: 10px;
+}
+
+.selectContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.selectContainer label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.selectContainer select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #0a2342;
+    background-color: #0a2342;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.selectContainer select:hover {
+    border-color: #1f4886;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    border: 1px solid #0a2342;
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #0a2342;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #0a192f;
+}
+
+.table tr:hover {
+    background-color: #1a1a2e;
+}
+
+.button {
+    background-color: #0a2342;
+    border-radius: 5px;
+    border: 2px solid #0a192f;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #1f4886;
+}
+
+.loading {
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .formularios {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .selectContainer select {
+        font-size: 14px;
+    }
+
+    .table th, .table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .formularios {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .selectContainer select {
+        font-size: 12px;
+    }
+
+    .table th, .table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
